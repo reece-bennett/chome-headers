@@ -13,6 +13,11 @@ chrome.runtime.onInstalled.addListener(() => {
     if (changes.headers) {
       headers = changes.headers.newValue
     }
+
+    const numEnabled = headers.filter(h => h.isEnabled).length
+    chrome.browserAction.setBadgeText({
+      text: numEnabled > 0 ? `${numEnabled}` : ''
+    })
   })
 
   chrome.webRequest.onBeforeSendHeaders.addListener(
