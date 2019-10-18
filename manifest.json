@@ -5,12 +5,12 @@
   "description": "Add and modify HTTP headers.",
   "background": {
     "scripts": ["background.js"],
-    "persistent": false
+    "persistent": true
   },
   "browser_action": {
     "default_popup": "popup.html"
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "webRequest", "webRequestBlocking", "*://*/*"],
   "icons": {
     "16": "images/get_started16.png",
     "32": "images/get_started32.png",
