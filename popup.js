@@ -50,6 +50,8 @@ function createRow(header) {
 }
 
 function refreshRows(headers) {
+  if (!headers) return
+
   tableBody.innerHTML = ''
 
   for (let header of headers) {

@@ -1,12 +1,18 @@
 chrome.runtime.onInstalled.addListener(() => {
-  let headers = [{ id: 0, name: '', value: '', isEnabled: true }]
+  let headers = []
 
-  chrome.storage.sync.set({ headers }, () => {
-    console.log('Chrome-Headers has been installed')
+  chrome.storage.sync.get('headers', data => {
+    if (data.headers)  {
+      headers = data.headers
+    } else {
+      chrome.storage.sync.set({ headers })
+    }
   })
 
   chrome.storage.onChanged.addListener(changes => {
-    headers = changes.headers.newValue
+    if (changes.headers) {
+      headers = changes.headers.newValue
+    }
   })
 
   chrome.webRequest.onBeforeSendHeaders.addListener(
